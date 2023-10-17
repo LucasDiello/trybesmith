@@ -1,6 +1,6 @@
 const mapStatushttps = (status: string) : number => {
   const statusMap : Record<string, number> = {
-    SUCESSFUL: 200,
+    SUCCESSFUL: 200,
     INVALID_DATA: 400,
     UNAUTHORIZED: 401,
     NOT_FOUND: 404,

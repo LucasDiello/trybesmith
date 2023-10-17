@@ -2,10 +2,15 @@ import { Request, Response } from 'express';
 import productService from '../services/products.service';
 import mapStatushttps from '../utils/mapStatusHttp';
 
-const postProduct = async (req: Request, res: Response): Promise<Response> => {
+const postProduct = async (req: Request, res: Response): Promise<void> => {
   const { status, data } = await productService.postProduct(req.body);
             
-  return res.status(mapStatushttps(status)).json(data);
+  res.status(mapStatushttps(status)).json(data);
 };
 
-export default { postProduct };
+const getAllProducts = async (_req: Request, res: Response) : Promise<void> => {
+  const { status, data } = await productService.getAllProducts();
+  res.status(mapStatushttps(status)).json(data);
+};
+
+export default { postProduct, getAllProducts };

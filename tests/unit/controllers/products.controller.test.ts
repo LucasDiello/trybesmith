@@ -6,6 +6,7 @@ import productsController from '../../../src/controller/products.controller';
 import productsMock from '../../mocks/products.mock';
 import { ServiceResponse } from '../../../src/types/ServiceResponse';
 import { ProductInputtableTypes } from '../../../src/database/models/product.model';
+import { Product } from '../../../src/types/Product';
 
 chai.use(sinonChai);
 
@@ -32,6 +33,22 @@ describe('ProductsController', function () {
     await productsController.postProduct(req, res);
 
     expect(res.status).to.have.been.calledWith(201);
+    expect(res.json).to.have.been.calledWith(serviceResponse.data);
+  });
+
+  it('ao listar os produtos com sucesso, deve retornar status SUCCESSFUL 200', async function () {
+    const { products } = productsMock;
+
+    const serviceResponse: ServiceResponse<Product[]> = {
+      status: 'SUCCESSFUL',
+      data: products
+    };
+
+    res.status(200).json(serviceResponse.data);
+    
+    await productsController.getAllProducts(req, res);
+
+    expect(res.status).to.have.been.calledWith(200);
     expect(res.json).to.have.been.calledWith(serviceResponse.data);
   });
 });

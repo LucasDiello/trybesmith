@@ -43,6 +43,21 @@ describe('POST /login', function () {
       message: 'Username or password invalid',
     });
   });
+
+  it('ao passar um usuário que existe mas com a senha errada deve retornar o status 401', async function () {
+    const existingUserWithWrongPasswordBody = loginMock.existingUserWithWrongPasswordBody;
+
+    const mockFindOneReturn = UserModel.build(loginMock.existingUser);
+
+    sinon.stub(UserModel, 'findOne').resolves(mockFindOneReturn);
+
+    const response = await chai.request(app).post('/login').send(existingUserWithWrongPasswordBody);
+
+    expect(response.status).to.be.equal(401);
+    expect(response.body).to.be.deep.equal({
+      message: 'Username or password invalid',
+    });
+  });
   
   it('ao passar um usuário que existe e a senha correta deve retornar o status 200', async function () {
     const validLoginBody = loginMock.validLoginBody;

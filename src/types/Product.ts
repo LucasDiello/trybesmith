@@ -4,3 +4,8 @@ export type Product = {
   price: string;
   orderId: number;
 };
+
+export type ProductSchema = {
+  name: string;
+  price: number;
+};

@@ -12,6 +12,28 @@ const addProductWithId = {
         orderId: 4,
 }
 
+const productNotName = {
+    "price": "30 peças de ouro",
+    "orderId": 4,
+}
+
+const productNotPrice = {
+    "name": "renato de Thor",
+    "orderId": 4,
+}
+
+const productNotLengthName = {
+    "name": "re",
+    "price": "30 peças de ouro",
+    "orderId": 4,
+};
+
+const productNotLengthPrice = {
+    "name": "renato de Thor",
+    "price": "30",
+    "orderId": 4,
+};
+
 const products = [
     {
         "id": 1,
@@ -90,5 +112,9 @@ const products = [
 export default {
     addProduct,
     addProductWithId,
-    products
+    products,
+    productNotName,
+    productNotPrice,
+    productNotLengthName,
+    productNotLengthPrice
 }

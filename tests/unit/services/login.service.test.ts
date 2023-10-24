@@ -55,13 +55,4 @@ describe('LoginService', function () {
 
   });
 
-  it('ao passar um usuário que existe e a senha correta deve retornar o status 200', async function () {
-    const parameters = loginMock.validLoginBody;
-
-    const serviceResponse = await loginService.verifyLogin(parameters);
-
-    expect(serviceResponse.status).to.eq('SUCCESSFUL');
-    expect(serviceResponse.data).to.have.key('token');
-
-  });
 });
